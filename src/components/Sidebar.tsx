@@ -61,6 +61,14 @@ const Sidebar = () => {
     setMaxPrice(value ? parseFloat(value) : undefined);
   };
 
+  const handleRadioChangeCategories = (category: string) => {
+    setSelectedCategory(category);
+  };
+
+  const handleKeywordClick = (keyword: string) => {
+    setKeyword(keyword);
+  };
+
   return (
     <div className="w-64 p-5 h-screen">
       <h1 className="text-2xl font-bold mb-10 mt-4">Luxury Mance</h1>
@@ -103,6 +111,8 @@ const Sidebar = () => {
                 type="radio"
                 name="category"
                 value={category}
+                onChange={() => handleRadioChangeCategories(category)}
+                checked={selectedCategory === category}
               />
               {category.toUpperCase()}
             </label>
@@ -116,6 +126,7 @@ const Sidebar = () => {
             {keywords.map((keywords, index) => (
               <button
                 key={index}
+                onClick={() => handleKeywordClick(keyword)}
                 className="block mb-2 px-4 py-2 w-full text-left border rounded hover:bg-grey-200"
               >
                 {keywords.toUpperCase()}
