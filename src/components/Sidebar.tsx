@@ -69,6 +69,14 @@ const Sidebar = () => {
     setKeyword(keyword);
   };
 
+  const handleResetFilters = () => {
+    setSearchQuery("");
+    setSelectedCategory("");
+    setMinPrice(undefined);
+    setMaxPrice(undefined);
+    setKeyword("");
+  };
+
   return (
     <div className="w-64 p-5 h-screen">
       <h1 className="text-2xl font-bold mb-10 mt-4">Luxury Mance</h1>
@@ -135,7 +143,10 @@ const Sidebar = () => {
           </div>
         </div>
 
-        <button className="w-full mb-[4rem] py-2 bg-black text-white rounded mt-5">
+        <button
+          onClick={handleResetFilters}
+          className="w-full mb-[4rem] py-2 bg-black text-white rounded mt-5"
+        >
           Reset Filters
         </button>
       </section>
