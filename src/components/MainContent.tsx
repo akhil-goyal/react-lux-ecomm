@@ -51,6 +51,22 @@ const MainContent = () => {
         (product) => product.price <= maxPrice
       );
     }
+    if (searchQuery) {
+      filteredProducts = filteredProducts.filter((product) =>
+        product.title.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+    }
+
+    switch (filter) {
+      case "expensive":
+        return filteredProducts.sort((a, b) => b.price - a.price);
+      case "cheap":
+        return filteredProducts.sort((a, b) => a.price - b.price);
+      case "popular":
+        return filteredProducts.sort((a, b) => b.rating - a.rating);
+      default:
+        return filteredProducts;
+    }
   };
 
   const filteredProducts = getFilteredProducts();
