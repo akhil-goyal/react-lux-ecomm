@@ -135,7 +135,7 @@ const Sidebar = () => {
               <button
                 key={index}
                 onClick={() => handleKeywordClick(keyword)}
-                className="block mb-2 px-4 py-2 w-full text-left border rounded hover:bg-grey-200"
+                className="block mb-2 px-4 py-2 w-full text-left border rounded hover:bg-gray-200"
               >
                 {keywords.toUpperCase()}
               </button>
