@@ -81,6 +81,25 @@ const MainContent = () => {
     }
   };
 
+  const getPaginationButtons = () => {
+    const buttons: number[] = [];
+
+    let startPage = Math.max(1, currentPage - 2);
+    let endPage = Math.min(totalPages, currentPage + 2);
+
+    if (currentPage - 2 < 1) {
+      endPage = Math.min(totalPages, endPage + (2 - currentPage - 1));
+    }
+    if (currentPage + 2 > totalPages) {
+      startPage = Math.min(1, startPage - (2 - totalPages - currentPage));
+    }
+
+    for (let page = startPage; page <= endPage; page++) {
+      buttons.push(page);
+    }
+    return buttons;
+  };
+
   return (
     <section className="xl:w-[55rem] lg:w-[55rem] sm:w-[40rem] xs:w-[20rem] p-5">
       <div className="mb-5">
@@ -139,6 +158,21 @@ const MainContent = () => {
           >
             Previous
           </button>
+
+          <div className="flex flex-wrap justify-center">
+            {getPaginationButtons().map((page) => (
+              <button
+                className={`border px-4 py-2 mx-1 rounded-full ${
+                  page === currentPage ? "bg-black text-white" : ""
+                }`}
+                key={page}
+                onClick={() => handlePageChange(page)}
+              >
+                {page}
+              </button>
+            ))}
+          </div>
+
           <button
             disabled={currentPage === totalPages}
             onClick={() => handlePageChange(currentPage + 1)}
