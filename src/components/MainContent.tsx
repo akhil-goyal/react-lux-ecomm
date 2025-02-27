@@ -41,7 +41,19 @@ const MainContent = () => {
         (product) => product.category === selectedCategory
       );
     }
+    if (minPrice !== undefined) {
+      filteredProducts = filteredProducts.filter(
+        (product) => product.price >= minPrice
+      );
+    }
+    if (maxPrice !== undefined) {
+      filteredProducts = filteredProducts.filter(
+        (product) => product.price <= maxPrice
+      );
+    }
   };
+
+  const filteredProducts = getFilteredProducts();
 
   return (
     <section className="xl:w-[55rem] lg:w-[55rem] sm:w-[40rem] xs:w-[20rem] p-5">
