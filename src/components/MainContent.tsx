@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useFilter } from "./FilterContext";
 import { Tally3 } from "lucide-react";
+import axios from "axios";
 
 const MainContent = () => {
   const { searchQuery, selectedCategory, minPrice, maxPrice, keyword } =
@@ -12,6 +13,25 @@ const MainContent = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const itemsPerPage = 12;
+
+  useEffect(() => {
+    let url = `https://dummyjson.com/products?limit=${itemsPerPage}&skip=${
+      (currentPage - 1) * itemsPerPage
+    }`;
+
+    if (keyword) {
+      url = `https://dummyjson.com/products/search?q=${keyword}`;
+    }
+
+    axios
+      .get(url)
+      .then((response) => {
+        setProducts(response.data.products);
+      })
+      .catch((error) => {
+        console.error("Error fetching the data: ", error);
+      });
+  }, [currentPage, keyword]);
 
   return (
     <section className="xl:w-[55rem] lg:w-[55rem] sm:w-[40rem] xs:w-[20rem] p-5">
@@ -50,6 +70,8 @@ const MainContent = () => {
             )}
           </div>
         </div>
+
+        <div className="grid grid-cols-4 sm:grid-cols-3 md:grid-cols-4 gap-5"></div>
       </div>
     </section>
   );
