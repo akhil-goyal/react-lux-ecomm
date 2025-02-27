@@ -72,6 +72,15 @@ const MainContent = () => {
 
   const filteredProducts = getFilteredProducts();
 
+  const totalProducts = 100;
+  const totalPages = Math.ceil(totalProducts / itemsPerPage);
+
+  const handlePageChange = (page: number) => {
+    if (page > 0 && page <= totalPages) {
+      setCurrentPage(page);
+    }
+  };
+
   return (
     <section className="xl:w-[55rem] lg:w-[55rem] sm:w-[40rem] xs:w-[20rem] p-5">
       <div className="mb-5">
@@ -120,6 +129,23 @@ const MainContent = () => {
               price={product.price}
             />
           ))}
+        </div>
+
+        <div className="flex flex-col sm:flex-row justify-between items-center mt-5">
+          <button
+            disabled={currentPage === 1}
+            onClick={() => handlePageChange(currentPage - 1)}
+            className="border px-4 py-2 mx-2 rounded-full"
+          >
+            Previous
+          </button>
+          <button
+            disabled={currentPage === totalPages}
+            onClick={() => handlePageChange(currentPage + 1)}
+            className="border px-4 py-2 mx-2 rounded-full"
+          >
+            Next
+          </button>
         </div>
       </div>
     </section>
