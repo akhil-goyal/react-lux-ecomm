@@ -33,6 +33,16 @@ const MainContent = () => {
       });
   }, [currentPage, keyword]);
 
+  const getFilteredProducts = () => {
+    let filteredProducts = products;
+
+    if (selectedCategory) {
+      filteredProducts = filteredProducts.filter(
+        (product) => product.category === selectedCategory
+      );
+    }
+  };
+
   return (
     <section className="xl:w-[55rem] lg:w-[55rem] sm:w-[40rem] xs:w-[20rem] p-5">
       <div className="mb-5">
