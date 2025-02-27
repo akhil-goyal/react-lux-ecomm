@@ -56,6 +56,24 @@ const Sidebar = () => {
             placeholder="Max"
           />
         </div>
+
+        {/* Categories Section */}
+
+        <div className="mb-5">
+          <h2 className="text-xl font-semibold mb-3">Categories</h2>
+        </div>
+
+        {categories.map((category, index) => (
+          <label key={index} className="block mb-2">
+            <input
+              className="mr-2 w-[16px] h-[16px]"
+              type="radio"
+              name="category"
+              value={category}
+            />
+            {category.toUpperCase()}
+          </label>
+        ))}
       </section>
     </div>
   );
