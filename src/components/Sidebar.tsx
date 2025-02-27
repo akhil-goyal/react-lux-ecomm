@@ -63,17 +63,34 @@ const Sidebar = () => {
           <h2 className="text-xl font-semibold mb-3">Categories</h2>
         </div>
 
-        {categories.map((category, index) => (
-          <label key={index} className="block mb-2">
-            <input
-              className="mr-2 w-[16px] h-[16px]"
-              type="radio"
-              name="category"
-              value={category}
-            />
-            {category.toUpperCase()}
-          </label>
-        ))}
+        <section>
+          {categories.map((category, index) => (
+            <label key={index} className="block mb-2">
+              <input
+                className="mr-2 w-[16px] h-[16px]"
+                type="radio"
+                name="category"
+                value={category}
+              />
+              {category.toUpperCase()}
+            </label>
+          ))}
+        </section>
+
+        {/* Keywords Section */}
+        <div className="mb-5 mt-4">
+          <h2 className="text-xl font-semibold mb-3">Keywords</h2>
+          <div>
+            {keywords.map((keywords, index) => (
+              <button
+                key={index}
+                className="block mb-2 px-4 py-2 w-full text-left border rounded hover:bg-grey-200"
+              >
+                {keywords.toUpperCase()}
+              </button>
+            ))}
+          </div>
+        </div>
       </section>
     </div>
   );
